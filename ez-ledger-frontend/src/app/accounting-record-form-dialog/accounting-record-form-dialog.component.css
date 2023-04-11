@@ -1,0 +1,12 @@
+/* 調整日期選擇器圖示的位置 */
+.mat-datepicker-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+/* 調整日期選擇器文本框的寬度 */
+.mat-form-field.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: calc(100% - 48px); /* 48px是日期選擇器圖示的寬度 */
+}

@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>新增收支紀錄</h2>
+<div mat-dialog-content>
+    <div class="box" style="background-color:rgb(255, 255, 255);position: relative;left: 5%;">
+
+        <p>
+            <mat-form-field apparence="legacy">
+                <mat-label>Name</mat-label>
+                <input style="color: black;" matInput [(ngModel)]="newAccountingRecord.name" type="text" name="name"
+                    id="name" class="form-control" required>
+            </mat-form-field><br>
+
+            <mat-form-field apparence="legacy">
+                <mat-label>Type</mat-label>
+                <input style="color: black;" matInput [(ngModel)]="newAccountingRecord.type" type="text" name="type"
+                    id="type" class="form-control" required>
+            </mat-form-field><br>
+
+            <mat-form-field apparence="legacy">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="datepicker" [(ngModel)]="newAccountingRecord.date"
+                    (dateInput)="onDateInput()">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field apparence="legacy">
+                <mat-label>amount</mat-label>
+                <input style="color: black;" matInput [(ngModel)]="newAccountingRecord.amount" type="text" name="amount"
+                    id="amount" class="form-control" required>
+            </mat-form-field><br>
+        </p>
+        <p>            
+            <button mat-raised-button color="primary" *ngIf="!accountingRecordId"
+                (click)="addAccountingRecord()">新增</button>
+            <button mat-raised-button color="primary" *ngIf="accountingRecordId"
+                (click)="editAccountingRecord()">修改</button>
+            <span style="margin-right: 10px;"></span> <!-- 添加这个 span 标签使按钮分开一些 -->
+            <button mat-raised-button color="warn" (click)="dialogRef.close()">取消</button>
+        </p>
+
+    </div>
+</div>

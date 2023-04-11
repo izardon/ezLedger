@@ -1,0 +1,27 @@
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .box {
+    float: left;
+    width: auto;
+    padding: 50px;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  h1 {
+    width: 100%;
+    text-align: center;
+    height: 50px; /* ★ */
+    line-height: 50px; /* ★ */
+  }
+
+  mat-header-cell, mat-cell {
+    justify-content: center;
+  }
