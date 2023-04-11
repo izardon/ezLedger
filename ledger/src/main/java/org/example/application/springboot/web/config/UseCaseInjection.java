@@ -3,6 +3,7 @@ package org.example.application.springboot.web.config;
 import org.example.model.DomainEventBus;
 import org.example.usecase.accountingrecord.AccountingRecordRepository;
 import org.example.usecase.accountingrecord.delete.DeleteAccountingRecordUseCase;
+import org.example.usecase.accountingrecord.edit.EditAccountingRecordUseCase;
 import org.example.usecase.eventHandler.NotifyLedger;
 import org.example.usecase.ledger.LedgerRepository;
 import org.example.usecase.accountingrecord.create.CreateAccountingRecordUseCase;
@@ -26,6 +27,11 @@ public class UseCaseInjection {
     @Bean(name="CreateAccountingRecordUseCase")
     public CreateAccountingRecordUseCase createAccountingRecordUseCase() {
         return new CreateAccountingRecordUseCase(accountingRecordRepository, eventBus);
+    }
+
+    @Bean(name="EditAccountingRecordUseCase")
+    public EditAccountingRecordUseCase editAccountingRecordUseCase() {
+        return new EditAccountingRecordUseCase(accountingRecordRepository, eventBus);
     }
 
     @Bean(name="DeleteAccountingRecordUseCase")

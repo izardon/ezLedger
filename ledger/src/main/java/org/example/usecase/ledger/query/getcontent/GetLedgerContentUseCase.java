@@ -7,8 +7,10 @@ import org.example.usecase.accountingrecord.AccountingRecordRepository;
 import org.example.usecase.ledger.LedgerRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class GetLedgerContentUseCase {
 
@@ -42,10 +44,14 @@ public class GetLedgerContentUseCase {
             Ledger selectedLedger = ledger.get();
             selectedLedger.clearDomainEvents();
 
+            List<AccountingRecord> sortedAccountingRecords = accountingRecords.stream()
+                    .sorted(Comparator.comparing(AccountingRecord::getDate))
+                    .collect(Collectors.toList());
+
             output.setLedgerId(selectedLedger.getId());
             output.setLedgerName(selectedLedger.getName());
-            output.setAccountingRecords(accountingRecords);
-            output.setCommittedAccountingRecord(selectedLedger.getCommittedAccountingRecords());
+            output.setAccountingRecords(sortedAccountingRecords);
+//            output.setCommittedAccountingRecord(selectedLedger.getCommittedAccountingRecords());
         } else {
             throw new RuntimeException("ledger not found, ledger id = " + input.getLedgerId());
         }

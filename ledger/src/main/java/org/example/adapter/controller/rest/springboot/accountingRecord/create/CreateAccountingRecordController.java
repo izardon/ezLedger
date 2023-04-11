@@ -21,6 +21,7 @@ public class CreateAccountingRecordController {
     @PostMapping(path = "/${EZ_LEDGER_PREFIX}/ledgers/{ledgerId}/accountingRecords/")
     public String createPaymentRecord(@PathVariable("ledgerId") String ledgerId,
                                       @RequestBody String accountingRecordInfo) {
+        System.out.println("ledgerId: " + ledgerId);
         CreateAccountingRecordInput input = new CreateAccountingRecordInput();
         CreateAccountingRecordOutput output = new CreateAccountingRecordOutput();
 

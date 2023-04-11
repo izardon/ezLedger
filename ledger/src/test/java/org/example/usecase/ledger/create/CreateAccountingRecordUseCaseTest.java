@@ -26,25 +26,28 @@ class CreateAccountingRecordUseCaseTest {
     @Autowired
     private AccountingRecordRepositoryPeer accountingRecordRepositoryPeer;
 
-//    @Test
-//    void create_accounting_record_should_succeed() {
-//        //Arrange
-//        DomainEventBus domainEventBus = new DomainEventBus();
-//        AccountingRecordRepository accountingRecordRepository = new AccountingRecordRepositoryImpl(accountingRecordRepositoryPeer);
-//        CreateAccountingRecordUseCase createAccountingRecordUseCase = new CreateAccountingRecordUseCase(accountingRecordRepository, domainEventBus);
-//        CreateAccountingRecordInput input = new CreateAccountingRecordInput();
-//        CreateAccountingRecordOutput output = new CreateAccountingRecordOutput();
-//        String ledgerId = "e8c1db78-50c7-4a05-b017-2109113e5ed4";
-//        input.setLedgerId(ledgerId);
-//        input.setName("早餐");
-//        input.setType("食物");
-//        input.setDate("20230317");
-//        input.setAmount(50);
-//
-//        //Act
-//        createAccountingRecordUseCase.execute(input, output);
-//
-//        //Assert
-//        Assertions.assertEquals("e8c1db78-50c7-4a05-b017-2109113e5ed4", output.getLedgerId());
-//    }
+    @Test
+    void create_accounting_record_should_succeed() {
+        //Arrange
+        DomainEventBus domainEventBus = new DomainEventBus();
+        AccountingRecordRepository accountingRecordRepository = new AccountingRecordRepositoryImpl(accountingRecordRepositoryPeer);
+        CreateAccountingRecordUseCase createAccountingRecordUseCase = new CreateAccountingRecordUseCase(accountingRecordRepository, domainEventBus);
+        CreateAccountingRecordInput input = new CreateAccountingRecordInput();
+        CreateAccountingRecordOutput output = new CreateAccountingRecordOutput();
+        String ledgerId = "e8c1db78-50c7-4a05-b017-2109113e5ed4";
+        input.setLedgerId(ledgerId);
+        input.setName("早餐");
+        input.setType("食物");
+        input.setDate("20230317");
+        input.setAmount(50);
+
+        //Act
+        createAccountingRecordUseCase.execute(input, output);
+
+        //Assert
+        Assertions.assertEquals("早餐", output.getName());
+        Assertions.assertEquals("食物", output.getType());
+        Assertions.assertEquals("20230317", output.getDate());
+        Assertions.assertEquals(50, output.getAmount());
+    }
 }

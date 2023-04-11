@@ -51,4 +51,11 @@ public class AccountingRecord extends AggregateRoot<String> {
                 getId()
         )));
     }
+
+    public void edit(String name, String type, String date, int amount) {
+        this.name = name;
+        this.type = type;
+        this.date = date;
+        this.amount = amount;
+    }
 }

@@ -19,7 +19,10 @@ public class CreateAccountingRecordUseCase {
     }
 
     public void execute(CreateAccountingRecordInput input, CreateAccountingRecordOutput output) {
+        //產生會計記錄ID
         String accountingRecordId = UUID.randomUUID().toString();
+
+        //建立會計記錄
         AccountingRecord accountingRecord = new AccountingRecord(accountingRecordId,
                 input.getLedgerId(),
                 input.getName(),
@@ -27,9 +30,16 @@ public class CreateAccountingRecordUseCase {
                 input.getDate(),
                 input.getAmount());
 
+        //儲存
         accountingRecordRepository.save(accountingRecord);
+        //發布事件
         domainEventBus.postAll(accountingRecord);
 
+        //設定輸出
+        output.setName(accountingRecord.getName());
+        output.setDate(accountingRecord.getDate());
+        output.setType(accountingRecord.getType());
+        output.setAmount(accountingRecord.getAmount());
         output.setAccountingRecordId(accountingRecord.getId());
     }
 }
